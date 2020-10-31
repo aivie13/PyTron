@@ -11,7 +11,7 @@ class Player:
         self.x = x
         self.y = y
         self.speed = 1
-        self.bearing = b
+        self.direction = b
         self.color = c
         self.boost = False
         self.start_boost = time.time()
@@ -24,11 +24,11 @@ class Player:
 
     def __move__(self):
         if not self.boost:
-            self.x += self.bearing[0]
-            self.y += self.bearing[1]
+            self.x += self.direction[0]
+            self.y += self.direction[1]
         else:
-            self.x += self.bearing[0] * 2
-            self.y += self.bearing[1] * 2
+            self.x += self.direction[0] * 2
+            self.y += self.direction[1] * 2
 
     def __boost__(self):
         if self.boosts > 0:
@@ -43,7 +43,8 @@ def new_game():
     return new_p1, new_p2
 
 
-width, height = 600, 660
+width = 600
+height = 660
 offset = height - width
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption("PyTron")
@@ -78,24 +79,24 @@ while not done:
         elif event.type == pygame.KEYDOWN:
             # player 1
             if event.key == pygame.K_w:
-                objects[0].bearing = (0, -2)
+                objects[0].direction = (0, -2)
             elif event.key == pygame.K_s:
-                objects[0].bearing = (0, 2)
+                objects[0].direction = (0, 2)
             elif event.key == pygame.K_a:
-                objects[0].bearing = (-2, 0)
+                objects[0].direction = (-2, 0)
             elif event.key == pygame.K_d:
-                objects[0].bearing = (2, 0)
+                objects[0].direction = (2, 0)
             elif event.key == pygame.K_TAB:
                 objects[0].__boost__()
             # player 2
             if event.key == pygame.K_UP:
-                objects[1].bearing = (0, -2)
+                objects[1].direction = (0, -2)
             elif event.key == pygame.K_DOWN:
-                objects[1].bearing = (0, 2)
+                objects[1].direction = (0, 2)
             elif event.key == pygame.K_LEFT:
-                objects[1].bearing = (-2, 0)
+                objects[1].direction = (-2, 0)
             elif event.key == pygame.K_RIGHT:
-                objects[1].bearing = (2, 0)
+                objects[1].direction = (2, 0)
             elif event.key == pygame.K_RSHIFT:
                 objects[1].__boost__()
 
