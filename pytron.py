@@ -2,7 +2,7 @@ import pygame
 import time
 pygame.init()
 
-BLACK = (0, 0, 0)
+BACKGROUND_COLOR = (0, 0, 0)
 P1_COLOR = (0, 255, 255)
 P2_COLOR = (255, 0, 255)
 
@@ -100,7 +100,7 @@ while not done:
             elif event.key == pygame.K_RSHIFT:
                 objects[1].__boost__()
 
-    screen.fill(BLACK)
+    screen.fill(BACKGROUND_COLOR)
 
     for r in wall_rects: pygame.draw.rect(screen, (42, 42, 42), r, 0)
 
